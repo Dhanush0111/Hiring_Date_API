@@ -21,6 +21,11 @@ namespace Hiring_Date_API.Controllers
             return await _context.Companys.ToListAsync();
         }
 
+        [HttpGet("{id}")]
 
+        public async Task<Company> getbyid(int id)
+        {
+            return await _context.Companys.FindAsync(id);
+        }
     }
 }

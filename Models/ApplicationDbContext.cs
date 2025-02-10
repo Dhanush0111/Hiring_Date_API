@@ -7,6 +7,6 @@ namespace Hiring_Date_API.Models
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-        
+
     }
 }

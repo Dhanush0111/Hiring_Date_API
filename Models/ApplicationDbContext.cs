@@ -10,7 +10,7 @@ namespace Hiring_Date_API.Models
         }
 
         public DbSet<Hiring> Hirings { get; set; }
-        public DbSet<Company> Companys { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace Hiring_Date_API.Models
 
                 entity.Property(h => h.Activity).IsRequired().HasMaxLength(200);
 
-                entity.HasOne(h => h.Company_CompanyId).WithOne().HasForeignKey<Company>(c => c.CompanyId);
+                entity.HasOne(h => h.Company_CompanyId).WithMany().HasForeignKey(c => c.CompanyId);
 
 
             

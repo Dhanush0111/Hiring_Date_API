@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hiring_Date_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250210111135_Initial")]
-    partial class Initial
+    [Migration("20250211044532_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,10 @@ namespace Hiring_Date_API.Migrations
             modelBuilder.Entity("Hiring_Date_API.Models.Company", b =>
                 {
                     b.Property<int>("CompanyId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompanyId"));
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -36,7 +39,7 @@ namespace Hiring_Date_API.Migrations
 
                     b.HasKey("CompanyId");
 
-                    b.ToTable("Companys");
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("Hiring_Date_API.Models.Hiring", b =>
@@ -62,20 +65,19 @@ namespace Hiring_Date_API.Migrations
 
                     b.HasKey("HiringId");
 
-                    b.ToTable("Hirings");
-                });
+                    b.HasIndex("CompanyId");
 
-            modelBuilder.Entity("Hiring_Date_API.Models.Company", b =>
-                {
-                    b.HasOne("Hiring_Date_API.Models.Hiring", null)
-                        .WithOne("Company_CompanyId")
-                        .HasForeignKey("Hiring_Date_API.Models.Company", "CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("Hirings");
                 });
 
             modelBuilder.Entity("Hiring_Date_API.Models.Hiring", b =>
                 {
+                    b.HasOne("Hiring_Date_API.Models.Company", "Company_CompanyId")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Company_CompanyId");
                 });
 #pragma warning restore 612, 618

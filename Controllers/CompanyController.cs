@@ -15,14 +15,13 @@ namespace Hiring_Date_API.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Company>> getcompany()
+        public async Task<List<Company>> GetCompany()
         {
             return await _context.Companys.ToListAsync();
         }
 
         [HttpGet("{id}")]
-
-        public async Task<Company> getbyid(int id)
+        public async Task<Company> GetByCompanyId(int id)
         {
             return await _context.Companys.FindAsync(id);
         }

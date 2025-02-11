@@ -5,5 +5,7 @@
         public int CompanyId {  get; set; }
 
         public string CompanyName { get; set; } = string.Empty;
+
+        //public virtual ICollection<Hiring>? Hiring_HiringId { get; set; }
     }
 }

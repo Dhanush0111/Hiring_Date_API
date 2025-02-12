@@ -44,7 +44,7 @@ namespace Hiring_Date_API.Controllers
             }
             await _context.Companies.AddAsync(company);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(getbyid), new { id = company.CompanyId }, company);
+            return CreatedAtAction(nameof(Getbyid), new { id = company.CompanyId }, company);
         }
 
         [HttpPut("{id}")]

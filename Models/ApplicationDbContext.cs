@@ -27,9 +27,9 @@ namespace Hiring_Date_API.Models
                 
                 entity.HasKey(h => h.HiringId);
 
-                entity.Property(h => h.CompanyName).IsRequired().HasMaxLength(200);
-
                 entity.Property(h => h.Activity).IsRequired().HasMaxLength(200);
+
+                entity.Property(h => h.HiringDate).IsRequired();
 
                 entity.HasOne(h => h.Company_CompanyId).WithMany().HasForeignKey(c => c.CompanyId);
 

@@ -1,7 +1,13 @@
+using Hiring_Date_API.Mappings;
 using Hiring_Date_API.Models;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
+//builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+
 
 // Add services to the container.
 

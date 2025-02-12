@@ -1,4 +1,5 @@
 ﻿using Hiring_Date_API.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,17 +15,19 @@ namespace Hiring_Date_API.Controllers
             _context = context;
         }
 
+      
         [HttpGet]
-        public async Task<List<Company>> getcompany()
+        public async Task<List<Company>> GetCompany()
         {
             return await _context.Companies.ToListAsync();
         }
 
+
         [HttpGet("{id}")]
 
         public async Task<IActionResult> getbyid(int? id)
-        {  
-            if(id == null)
+        {
+            if (id == null)
             {
                 return NotFound();
             }
@@ -65,13 +68,14 @@ namespace Hiring_Date_API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _context.Companies.FindAsync(id);
-            if(user == null)
+            if (user == null)
             {
-                return NotFound();  
+                return NotFound();
             }
             _context.Companies.Remove(user);
             await _context.SaveChangesAsync();
             return Ok();
         }
+
     }
 }
